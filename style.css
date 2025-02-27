@@ -1,4 +1,4 @@
-/* --- Updated Modern & Clean Design for Dog Door App --- */
+/* --- Final Fix for White Box & Proper Icon Positioning --- */
 
 /* Reset & Full-Screen White Background */
 body, html {
@@ -8,23 +8,44 @@ body, html {
   height: 100vh;
   background-color: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   font-family: 'Arial', sans-serif;
   position: relative;
 }
 
-/* Main App Container */
+/* Top Status Bar Icons (Placed at Absolute Top) */
+#top-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  position: fixed;
+  top: 0px; /* Forces icons to the top of the phone screen */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  padding: 10px 0;
+  z-index: 10;
+}
+
+#battery {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Main App Container (Fix White Box) */
 #app {
   width: 90%;
   max-width: 400px;
   text-align: center;
   padding: 25px;
-  background: white;
+  background: transparent; /* Removed the white box background */
   border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: none; /* Removed shadow that created the white box effect */
   position: absolute;
-  top: 15%; /* Adjusted for better positioning */
+  top: 12%; /* Adjusted so the app sits better */
 }
 
 /* Dog Icon */
@@ -42,12 +63,15 @@ h1 {
   margin-bottom: 15px;
 }
 
-/* Status Text */
-p#doorStatus {
-  font-size: 18px;
-  font-weight: bold;
-  color: #555;
+/* Input Field */
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Buttons */
@@ -86,36 +110,6 @@ button:hover {
 .blue-btn {
   background: linear-gradient(135deg, #007BFF, #0056B3);
   color: white;
-}
-
-/* Input Field */
-input[type="text"] {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Top Status Bar Icons (Moved to Top) */
-#top-icons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  position: absolute;
-  top: 5px; /* Adjusted to be at the top */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  padding: 5px 0;
-}
-
-#battery {
-  font-size: 16px;
-  color: #333;
 }
 
 /* Smooth Animations */
