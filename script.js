@@ -16,7 +16,8 @@ document.getElementById("check").addEventListener("click", () => {
   const rfid = document.getElementById("rfid").value;
   if (authorizedRFIDs.includes(rfid)) {
     localStorage.setItem("doorStatus", "Closed"); // Set door status to Closed by default
-    window.location.href = "control.html"; // Redirect to the control page
+    window.location.replace("control.html");
+    // window.location.href = "control.html"; // Redirect to the control page
   } else {
     showAlert("Unauthorized RFID Tag!");
   }
