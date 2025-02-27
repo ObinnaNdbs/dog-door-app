@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Dog Door Control</title>
+</head>
+<body>
+  <div id="app" class="fade-in">
+    <!-- Top Icons -->
+    <div id="top-icons">
+        <span id="wifi">📶</span>
+        <span id="bluetooth">🔵</span>
+        <span id="doorIndicator">🟢</span> <!-- Green by default -->
+        <div id="battery">🔋 <span id="batteryStatus">100%</span></div>
+      </div>
+
+    <!-- Main Content -->
+    <h1>Controls</h1>
+    <div id="doorStatus">Door Status: Closed</div>
+    <button id="open">Open</button>
+    <button id="close">Close</button>
+    <button id="logs">Logs</button>
+<button id="logout">Logout</button>
+  </div>
+
+  <script src="control.js"></script>
+</body>
+</html>
