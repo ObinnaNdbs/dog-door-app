@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="dog.png">
+  <title>Dog Door App</title>
   <link rel="stylesheet" href="style.css">
-  <title>Dog Door Login</title>
 </head>
 <body>
-  <div id="app" class="fade-in">
-    <!-- Top Icons -->
-    <div id="top-icons">
-      <span id="wifi">📶</span>
-      <span id="bluetooth">🔵</span>
-      <span id="doorIndicator">🟢</span> <!-- Default to Green -->
-      <div id="battery">🔋 <span id="batteryStatus">100%</span></div>
-    </div>
-
-    <!-- Dog Image -->
-    <img src="dog.png" alt="Dog Icon" style="width: 150px; height: auto; margin: 20px auto; display: block;">
-
-    <!-- Main Content -->
+  
+  <!-- LOGIN PAGE -->
+  <div id="loginPage">
+    <img src="dog.png" alt="Dog Icon" class="dog-image">
     <h1>Dog Door</h1>
-    <input type="text" id="rfid" placeholder="Enter RFID">
-    <button id="check">Login</button>
+    <input type="password" id="rfidInput" placeholder="Enter RFID">
+    <button id="loginButton">Login</button>
+  </div>
+
+  <!-- CONTROL PAGE (Hidden Initially) -->
+  <div id="controlPage" style="display: none;">
+    <h1>Controls</h1>
+    <p>Door Status: <span id="doorStatus">Closed</span></p>
+    <button id="openButton">Open</button>
+    <button id="closeButton">Close</button>
+    <button id="logsButton">Logs</button>
+    <button id="logoutButton">Logout</button>
   </div>
 
   <script src="script.js"></script>
