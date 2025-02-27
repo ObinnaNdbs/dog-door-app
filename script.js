@@ -11,70 +11,46 @@ document.querySelectorAll("#batteryStatus").forEach(el => el.innerText = `${batt
 updateDoorIndicator();
 initDoorNotification(); // Start notification and auto-lock logic if door is open
 
-// **🔹 LOGIN FUNCTION (SPA MODE)**
-document.getElementById("loginButton").addEventListener("click", () => {
-  const rfid = document.getElementById("rfidInput").value;
+// Check RFID Button
+document.getElementById("check").addEventListener("click", () => {
+  const rfid = document.getElementById("rfid").value;
   if (authorizedRFIDs.includes(rfid)) {
-    localStorage.setItem("doorStatus", "Closed"); // Set default door status
-    document.getElementById("loginPage").style.display = "none";  // Hide login
-    document.getElementById("controlPage").style.display = "block";  // Show control panel
+    localStorage.setItem("doorStatus", "Closed"); // Set door status to Closed by default
+    window.location.replace("control.html");
+    // window.location.href = "control.html"; // Redirect to the control page
   } else {
     showAlert("Unauthorized RFID Tag!");
   }
 });
 
-// **🔹 DOOR CONTROLS**
-document.getElementById("openButton").addEventListener("click", () => {
-  doorStatus = "Open";
-  localStorage.setItem("doorStatus", doorStatus);
-  updateDoorIndicator();
-  showNotification("Door Opened");
-  startOpenDoorNotification();
-  startAutoCloseTimer();
-});
-
-document.getElementById("closeButton").addEventListener("click", () => {
-  doorStatus = "Closed";
-  localStorage.setItem("doorStatus", doorStatus);
-  updateDoorIndicator();
-  clearTimeout(doorOpenTimer);
-  clearTimeout(autoCloseTimer);
-  showNotification("Door Closed");
-});
-
-document.getElementById("logoutButton").addEventListener("click", () => {
-  document.getElementById("loginPage").style.display = "block"; // Show login page
-  document.getElementById("controlPage").style.display = "none"; // Hide control panel
-});
-
-// **🔹 ALERT FUNCTION**
+// Show Alert Function
 function showAlert(message) {
   const alertDiv = document.createElement("div");
   alertDiv.textContent = message;
   alertDiv.style.color = "red";
   alertDiv.style.marginTop = "10px";
-  document.getElementById("loginPage").appendChild(alertDiv);
+  document.getElementById("app").appendChild(alertDiv);
   setTimeout(() => alertDiv.remove(), 3000); // Remove alert after 3 seconds
 }
 
-// **🔹 UPDATE DOOR STATUS INDICATOR**
+// Update Door Indicator
 function updateDoorIndicator() {
-  const doorIndicator = document.getElementById("doorStatus");
-  doorIndicator.innerText = doorStatus;
+  const doorIndicator = document.getElementById("doorIndicator");
+  doorIndicator.innerText = doorStatus === "Open" ? "🔴" : "🟢";
 }
 
-// **🔹 BATTERY SIMULATION (Every 10s)**
+// Battery Simulation
 setInterval(() => {
   if (batteryLevel === 0) {
-    batteryLevel = 100; // Restart battery
+    batteryLevel = 100; // Restart from 100% when it hits 0%
   } else {
-    batteryLevel = Math.max(0, batteryLevel - 1); // Reduce battery
+    batteryLevel = Math.max(0, batteryLevel - 1); // Decrease battery
   }
   document.querySelectorAll("#batteryStatus").forEach(el => el.innerText = `${batteryLevel}%`);
-  localStorage.setItem("batteryLevel", batteryLevel);
+  localStorage.setItem("batteryLevel", batteryLevel); // Save to localStorage
 }, 10000);
 
-// **🔹 AUTO-CLOSE & NOTIFICATIONS**
+// Notification and Auto-Close Logic
 function initDoorNotification() {
   if (doorStatus === "Open") {
     startOpenDoorNotification();
@@ -99,16 +75,15 @@ function startAutoCloseTimer() {
       updateDoorIndicator();
       showNotification("Door automatically closed");
     }
-  }, 60000); // Auto-close after 1 min
+  }, 60000); // Auto-close after 1 minute
 }
 
-// **🔹 SHOW NOTIFICATIONS**
 function showNotification(message) {
   const notification = document.createElement("div");
   notification.textContent = message;
   notification.style.color = "red";
   notification.style.marginTop = "10px";
   notification.style.textAlign = "center";
-  document.getElementById("controlPage").appendChild(notification);
+  document.getElementById("app").appendChild(notification);
   setTimeout(() => notification.remove(), 3000);
 }
