@@ -1,0 +1,96 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eaf7ff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#app {
+  width: 320px;
+  height: 540px; /* Limit height to simulate a phone screen */
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Allow scrolling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Top Icons */
+#top-icons {
+  display: flex;
+  justify-content: flex-start; /* Align icons to the left */
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  padding: 0 15px;
+  gap: 10px; /* Add spacing between icons */
+}
+
+#top-icons span {
+  font-size: 20px; /* Consistent icon size */
+}
+
+#bluetooth {
+  margin-right: auto; /* Move to the left */
+}
+
+#battery {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Buttons */
+button {
+  width: 90%;
+  margin: 10px 0;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Animation */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dog Image */
+img[alt="Dog Icon"] {
+  width: 150px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Log Page Back Button */
+#back {
+  margin-top: 20px;
+}
