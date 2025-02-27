@@ -1,96 +1,67 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #eaf7ff;
+/* Reset all styles */
+body, html {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: white; /* Ensures entire background is white */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
+/* Container to center everything */
 #app {
-  width: 320px;
-  height: 540px; /* Limit height to simulate a phone screen */
-  background: white;
-  border-radius: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  overflow-y: auto; /* Allow scrolling */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  position: relative;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
 }
 
-/* Top Icons */
-#top-icons {
-  display: flex;
-  justify-content: flex-start; /* Align icons to the left */
-  align-items: center;
+/* Dog Icon */
+.dog-image {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Status and Title */
+h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+/* Input Field */
+input[type="text"] {
   width: 100%;
-  position: absolute;
-  top: 10px;
-  padding: 0 15px;
-  gap: 10px; /* Add spacing between icons */
-}
-
-#top-icons span {
-  font-size: 20px; /* Consistent icon size */
-}
-
-#bluetooth {
-  margin-right: auto; /* Move to the left */
-}
-
-#battery {
-  font-size: 14px;
-  color: #333;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 /* Buttons */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 button {
-  width: 90%;
-  margin: 10px 0;
-  padding: 12px;
-  background: #007bff;
-  color: white;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
+  transition: transform 0.2s ease-in-out;
 }
 
 button:hover {
-  background: #0056b3;
   transform: scale(1.05);
-  transition: all 0.2s ease-in-out;
 }
 
-/* Animation */
-.fade-in {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Dog Image */
-img[alt="Dog Icon"] {
-  width: 150px;
-  height: auto;
-  margin: 20px auto;
-  display: block;
-}
-
-/* Log Page Back Button */
-#back {
-  margin-top: 20px;
-}
+.green-btn { background: #28a745; color: white; }
+.red-btn { background: #dc3545; color: white; }
+.blue-btn { background: #007bff; color: white; }
