@@ -1,4 +1,4 @@
-/* --- Modern & Clean Design for Dog Door App --- */
+/* --- Updated Modern & Clean Design for Dog Door App --- */
 
 /* Reset & Full-Screen White Background */
 body, html {
@@ -11,6 +11,7 @@ body, html {
   justify-content: center;
   align-items: center;
   font-family: 'Arial', sans-serif;
+  position: relative;
 }
 
 /* Main App Container */
@@ -18,10 +19,12 @@ body, html {
   width: 90%;
   max-width: 400px;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 15%; /* Adjusted for better positioning */
 }
 
 /* Dog Icon */
@@ -36,7 +39,7 @@ h1 {
   font-size: 28px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 /* Status Text */
@@ -96,14 +99,18 @@ input[type="text"] {
   text-align: center;
 }
 
-/* Top Status Bar Icons */
+/* Top Status Bar Icons (Moved to Top) */
 #top-icons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  position: absolute;
+  top: 5px; /* Adjusted to be at the top */
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 18px;
-  margin-bottom: 15px;
+  padding: 5px 0;
 }
 
 #battery {
