@@ -1,43 +1,49 @@
-/* Reset all styles */
+/* --- Modern & Clean Design for Dog Door App --- */
+
+/* Reset & Full-Screen White Background */
 body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
-  background-color: white; /* Ensures entire background is white */
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
-/* Container to center everything */
+/* Main App Container */
 #app {
   width: 90%;
   max-width: 400px;
   text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Dog Icon */
 .dog-image {
   width: 120px;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-/* Status and Title */
+/* Title */
 h1 {
-  font-size: 26px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 10px;
 }
 
-/* Input Field */
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
+/* Status Text */
+p#doorStatus {
   font-size: 18px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
+  font-weight: bold;
+  color: #555;
   margin-bottom: 20px;
 }
 
@@ -52,16 +58,65 @@ button {
   width: 100%;
   padding: 15px;
   font-size: 18px;
+  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
   transform: scale(1.05);
 }
 
-.green-btn { background: #28a745; color: white; }
-.red-btn { background: #dc3545; color: white; }
-.blue-btn { background: #007bff; color: white; }
+.green-btn {
+  background: linear-gradient(135deg, #32CD32, #228B22);
+  color: white;
+}
+
+.red-btn {
+  background: linear-gradient(135deg, #FF6347, #B22222);
+  color: white;
+}
+
+.blue-btn {
+  background: linear-gradient(135deg, #007BFF, #0056B3);
+  color: white;
+}
+
+/* Input Field */
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Top Status Bar Icons */
+#top-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+#battery {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Smooth Animations */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
