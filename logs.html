@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css"/>
   <title>Activity Logs</title>
 </head>
 <body>
-  <div id="app" class="fade-in">
-    <!-- Top Icons -->
-    <div id="top-icons">
-        <span id="wifi">📶</span>
-        <span id="bluetooth">🔵</span>
-        <span id="doorIndicator">🟢</span> <!-- Default to Green -->
-        <div id="battery">🔋 <span id="batteryStatus">100%</span></div>
+  <div class="page logs-page">
+    <!-- TOP NAV BAR -->
+    <header class="top-nav">
+      <div class="left-icons">
+        <div class="hamburger">☰</div>
+        <span id="wifiIcon">📶</span>
+        <span id="bluetoothIcon">🔵</span>
       </div>
+      <div class="title">Devices</div>
+      <div class="right-icons">
+        <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
+        <span class="add-device">+</span>
+      </div>
+    </header>
 
-    <!-- Main Content -->
-    <h1>Activity Logs</h1>
-    <ul id="logList"></ul>
-    
-    <!-- Pagination Controls -->
-    <div id="pagination" style="margin-top: 20px;"></div>
-    
-    <button id="back">Back to Controls</button>
+    <!-- MAIN CONTENT: LOGS -->
+    <main class="logs-content">
+      <h2>Activity Logs</h2>
+      <ul id="logList"></ul>
+      <div id="pagination" class="pagination-controls"></div>
+    </main>
+
+    <!-- BOTTOM NAV BAR -->
+    <footer class="bottom-nav">
+      <button id="homeBtn" class="nav-btn">Home</button>
+      <button id="logsBtn" class="nav-btn selected">Logs</button>
+      <button id="logoutBtn" class="nav-btn">Logout</button>
+    </footer>
   </div>
 
   <script src="logs.js"></script>
