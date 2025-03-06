@@ -2,40 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="style.css" />
   <title>Dog Door Login</title>
 </head>
 <body>
-  <div class="page login-page">
-    <!-- TOP NAV BAR -->
+  <div class="page">
+    <!-- Top Nav -->
     <header class="top-nav">
-      <!-- Left side: hamburger + icons (optional if you want WiFi/Bluetooth on login) -->
+      <!-- Left icons -->
       <div class="left-icons">
-        <div class="hamburger">☰</div>
         <span id="wifiIcon">📶</span>
         <span id="bluetoothIcon">🔵</span>
       </div>
-
       <!-- Title -->
       <div class="title">Devices</div>
-
-      <!-- Right side: battery -->
+      <!-- Right icons -->
       <div class="right-icons">
         <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
-        <span class="add-device">+</span>
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="login-content">
+    <!-- Main Content -->
+    <main class="main-content">
       <img src="dog.png" alt="Dog Icon" class="big-icon" />
       <h1>Dog Door</h1>
-
       <input type="text" id="rfid" placeholder="Enter RFID" />
-
-      <button id="check" class="blue-btn">Login</button>
+      <button class="btn" id="check">Login</button>
     </main>
+
+    <!-- Bottom Nav (optional for login page) -->
+    <footer class="bottom-nav">
+      <!-- Could be empty or have “Login” etc. -->
+    </footer>
   </div>
 
   <script src="script.js"></script>
