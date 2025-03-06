@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
   <title>Garage Door Control</title>
 </head>
 <body>
   <div class="page control-page">
-    <!-- TOP NAV BAR -->
+    <!-- Top Nav -->
     <header class="top-nav">
-      <!-- Left icons: wifi, bluetooth -->
       <div class="left-icons">
         <span id="wifiIcon">📶</span>
         <span id="bluetoothIcon">🔵</span>
       </div>
-
-      <!-- Title in the center -->
       <div class="title">Devices</div>
-
-      <!-- Right icon: battery only -->
       <div class="right-icons">
         <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="door-content">
-      <!-- Circle that briefly shows swirl when opening/closing -->
+    <!-- Main Content -->
+    <main class="main-content door-content">
       <div class="door-circle">
-        <!-- The swirl is hidden by default; shown only during animation -->
         <div class="swirl" id="swirlAnim"></div>
         <img src="doorClosed.png" alt="Door Icon" id="doorImage" />
       </div>
@@ -38,11 +31,11 @@
       <h3 id="doorStatusLabel">Door is closed</h3>
     </main>
 
-    <!-- BOTTOM NAV BAR -->
+    <!-- Bottom Nav -->
     <footer class="bottom-nav">
-      <button id="homeBtn" class="nav-btn selected">Home</button>
-      <button id="logsBtn" class="nav-btn">Logs</button>
-      <button id="logoutBtn" class="nav-btn">Logout</button>
+      <button id="homeBtn">Home</button>
+      <button id="logsBtn">Logs</button>
+      <button id="logoutBtn">Logout</button>
     </footer>
   </div>
 
