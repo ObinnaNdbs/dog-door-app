@@ -1,116 +1,98 @@
-let batteryLevel = localStorage.getItem("batteryLevel")
-  ? parseInt(localStorage.getItem("batteryLevel"))
-  : 100;
+// Retrieve stored battery & door status
 let doorStatus = localStorage.getItem("doorStatus") || "Closed";
 let doorOpenTimer;
-let autoCloseTimer;
+let doorWarnTimer;
 
-// Immediately update battery and door status display on page load
-document.querySelectorAll("#batteryStatus").forEach(el => el.innerText = `${batteryLevel}%`);
-updateStatus();
-updateDoorIndicator();
-initDoorNotification(); // Initialize notification and auto-close logic
+// Update battery display from localStorage (script.js handles draining)
+let batteryLevel2 = localStorage.getItem("batteryLevel") || 100;
+document.querySelectorAll("#batteryStatus").forEach(el => el.innerText = `${batteryLevel2}%`);
 
-// Update Door Status
-function updateStatus() {
-  document.getElementById("doorStatus").innerText = `Door Status: ${doorStatus}`;
-}
+// On page load, set initial door status UI
+updateDoorUI();
 
-function updateDoorIndicator() {
-  const doorIndicator = document.getElementById("doorIndicator");
-  doorIndicator.innerText = doorStatus === "Open" ? "🔴" : "🟢";
-}
-
-// Open Door Button
-document.getElementById("open").addEventListener("click", () => {
-  doorStatus = "Open";
-  localStorage.setItem("doorStatus", doorStatus);
-  updateStatus();
-  updateDoorIndicator();
-  logActivity("Door opened");
-
-  // Start notification and auto-close timers
-  startOpenDoorNotification();
-  startAutoCloseTimer();
+// HOME button
+document.getElementById("homeBtn").addEventListener("click", () => {
+  // Already on home, so do nothing (but you could refresh)
 });
 
-// Close Door Button
-document.getElementById("close").addEventListener("click", () => {
-  doorStatus = "Closed";
-  localStorage.setItem("doorStatus", doorStatus);
-  updateStatus();
-  updateDoorIndicator();
-  logActivity("Door closed");
-
-  // Clear timers
-  clearTimeout(doorOpenTimer);
-  clearTimeout(autoCloseTimer);
-});
-
-// Battery Simulation
-setInterval(() => {
-  batteryLevel = batteryLevel > 0 ? batteryLevel - 1 : 100; // Restart from 100% at 0
-  document.querySelectorAll("#batteryStatus").forEach(el => el.innerText = `${batteryLevel}%`);
-  localStorage.setItem("batteryLevel", batteryLevel);
-}, 10000);
-
-// Initialize Notification and Auto-Close Logic
-function initDoorNotification() {
-  if (doorStatus === "Open") {
-    startOpenDoorNotification();
-    startAutoCloseTimer();
-  }
-}
-
-// Open Door Notification
-function startOpenDoorNotification() {
-  doorOpenTimer = setTimeout(function notifyOpenDoor() {
-    if (doorStatus === "Open") {
-      showNotification("The door has been open for too long!");
-      doorOpenTimer = setTimeout(notifyOpenDoor, 15000); // Repeat every 15 seconds
-    }
-  }, 15000);
-}
-
-// Auto Close Timer
-function startAutoCloseTimer() {
-  autoCloseTimer = setTimeout(() => {
-    if (doorStatus === "Open") {
-      doorStatus = "Closed";
-      localStorage.setItem("doorStatus", doorStatus);
-      updateStatus();
-      updateDoorIndicator();
-      logActivity("Door automatically closed");
-    }
-  }, 60000);
-}
-
-// Show Notification
-function showNotification(message) {
-  const notification = document.createElement("div");
-  notification.textContent = message;
-  notification.style.color = "red";
-  notification.style.marginTop = "10px";
-  notification.style.textAlign = "center";
-  document.getElementById("app").appendChild(notification);
-  setTimeout(() => notification.remove(), 3000);
-}
-
-// Log Activity Function
-function logActivity(action) {
-  const logs = JSON.parse(localStorage.getItem("logs")) || [];
-  logs.push(`${new Date().toLocaleString()}: ${action}`);
-  localStorage.setItem("logs", JSON.stringify(logs));
-}
-
-// Logs Button
-document.getElementById("logs").addEventListener("click", () => {
-  console.log("Logs button clicked");
+// LOGS button
+document.getElementById("logsBtn").addEventListener("click", () => {
   window.location.href = "logs.html";
 });
 
-// Logout Button
-document.getElementById("logout").addEventListener("click", () => {
-  console.log("Logout button clicked");
+// LOGOUT button
+document.getElementById("logoutBtn").addEventListener("click", () => {
   window.location.href = "index.html";
+});
+
+// Door open function
+function openDoor() {
+  doorStatus = "Open";
+  localStorage.setItem("doorStatus", doorStatus);
+  updateDoorUI();
+  logActivity("Door opened manually");
+
+  // Start 10s warnings
+  doorWarnTimer = setInterval(() => {
+    if (doorStatus === "Open") {
+      logActivity("Reminder: Door is still open");
+    }
+  }, 10000);
+
+  // Auto-close after 30s
+  doorOpenTimer = setTimeout(() => {
+    if (doorStatus === "Open") {
+      closeDoor(true);
+    }
+  }, 30000);
+}
+
+// Door close function
+function closeDoor(isAuto = false) {
+  doorStatus = "Closed";
+  localStorage.setItem("doorStatus", doorStatus);
+  updateDoorUI();
+  logActivity(isAuto ? "Door closed automatically" : "Door closed manually");
+
+  clearInterval(doorWarnTimer);
+  clearTimeout(doorOpenTimer);
+}
+
+// Update UI based on doorStatus
+function updateDoorUI() {
+  const statusLabel = document.getElementById("doorStatusLabel");
+  const doorLabel = document.getElementById("doorLabel");
+  const swirlAnim = document.getElementById("swirlAnim");
+  const doorIcon = document.getElementById("doorIcon");
+
+  if (doorStatus === "Open") {
+    statusLabel.innerText = "Opening now...";
+    swirlAnim.style.display = "block"; // Show swirl
+    doorIcon.style.filter = "hue-rotate(0deg)"; // If you want color changes
+  } else {
+    statusLabel.innerText = "Closing now...";
+    swirlAnim.style.display = "block"; // Could also hide swirl if closed
+    doorIcon.style.filter = "hue-rotate(120deg)"; // Slight color difference
+  }
+  doorLabel.innerText = "Garage Door Opener";
+}
+
+// Re-use from old code: logging
+function logActivity(action) {
+  const logs = JSON.parse(localStorage.getItem("logs")) || [];
+  const timestamp = new Date().toLocaleString();
+  logs.push(`${timestamp}: ${action}`);
+  localStorage.setItem("logs", JSON.stringify(logs));
+}
+
+// If you want open/close buttons on this page, add them:
+document.addEventListener("click", (e) => {
+  if (e.target.id === "doorCircle" || e.target.id === "doorIcon") {
+    // Toggle door if you want a click on circle to open/close
+    if (doorStatus === "Closed") {
+      openDoor();
+    } else {
+      closeDoor(false);
+    }
+  }
 });
