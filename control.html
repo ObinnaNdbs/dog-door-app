@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Dog Door Control</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css"/>
+  <title>Garage Door Control</title>
 </head>
 <body>
-  <div id="app" class="fade-in">
-    <!-- Top Icons -->
-    <div id="top-icons">
-        <span id="wifi">📶</span>
-        <span id="bluetooth">🔵</span>
-        <span id="doorIndicator">🟢</span> <!-- Green by default -->
-        <div id="battery">🔋 <span id="batteryStatus">100%</span></div>
+  <div class="page control-page">
+    <!-- TOP NAV BAR -->
+    <header class="top-nav">
+      <!-- Left icons: hamburger + wifi + bluetooth -->
+      <div class="left-icons">
+        <div class="hamburger">☰</div>
+        <span id="wifiIcon">📶</span>
+        <span id="bluetoothIcon">🔵</span>
       </div>
 
-    <!-- Main Content -->
-    <h1>Controls</h1>
-    <div id="doorStatus">Door Status: Closed</div>
-    <button id="open">Open</button>
-    <button id="close">Close</button>
-    <button id="logs">Logs</button>
-<button id="logout">Logout</button>
+      <!-- Title -->
+      <div class="title">Devices</div>
+
+      <!-- Right icons: battery + plus sign -->
+      <div class="right-icons">
+        <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
+        <span class="add-device">+</span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="door-content">
+      <!-- Circle with swirl animation & door icon inside -->
+      <div class="door-circle" id="doorCircle">
+        <!-- Replace with your own icon if you want -->
+        <img src="https://via.placeholder.com/100/FFFFFF/?text=Door" alt="Door Icon" id="doorIcon"/>
+        <div class="swirl" id="swirlAnim"></div>
+      </div>
+
+      <h2 id="doorLabel">Garage Door Opener</h2>
+      <h3 id="doorStatusLabel">Closing now...</h3>
+    </main>
+
+    <!-- BOTTOM NAV BAR -->
+    <footer class="bottom-nav">
+      <button id="homeBtn" class="nav-btn selected">Home</button>
+      <button id="logsBtn" class="nav-btn">Logs</button>
+      <button id="logoutBtn" class="nav-btn">Logout</button>
+    </footer>
   </div>
 
   <script src="control.js"></script>
