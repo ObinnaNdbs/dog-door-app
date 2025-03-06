@@ -1,147 +1,51 @@
-/* Reset default margins/padding */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7f9;
-  color: #333;
-}
-
-/* Page Container */
-.page {
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* TOP NAV BAR */
-.top-nav {
-  height: 56px;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-}
-.left-icons, .right-icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.hamburger {
-  cursor: pointer;
-  font-size: 20px;
-}
-.title {
-  font-weight: 600;
-  font-size: 18px;
-}
-.add-device {
-  font-size: 22px;
-  cursor: pointer;
-}
-#batteryIcon {
-  font-size: 14px;
-}
-
-/* BOTTOM NAV BAR */
-.bottom-nav {
-  height: 56px;
-  background: #fff;
-  border-top: 1px solid #ddd;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.nav-btn {
-  background: none;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  position: relative;
-}
-.nav-btn.selected {
-  color: #007aff;
-}
-
-/* LOGIN PAGE */
-.login-content {
+/* Container for door content */
+.door-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.big-icon {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 20px;
-}
-.login-content h1 {
-  font-size: 26px;
-  margin-bottom: 20px;
-}
-.login-content input {
-  width: 80%;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-.blue-btn {
-  width: 80%;
-  padding: 14px;
-  background: #007aff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
+  padding-bottom: 60px; /* space above bottom nav */
 }
 
-/* CONTROL PAGE */
-.control-page .door-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+/* The circle containing the swirl + door image */
 .door-circle {
   position: relative;
   width: 200px;
   height: 200px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
-#doorIcon {
-  width: 100px;
-  height: 100px;
+
+/* The swirl (hidden by default) */
+.swirl {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 200px;
+  height: 200px;
+  border: 6px solid #007aff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1;
+}
+
+/* Door image sits above swirl */
+#doorImage {
   position: absolute;
   top: 50%; left: 50%;
+  width: 120px;
+  height: 120px;
   transform: translate(-50%, -50%);
 }
-.swirl {
-  width: 180px;
-  height: 180px;
-  border: 10px solid #00f;
-  border-radius: 50%;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  box-sizing: border-box;
-  animation: swirlAnim 2s linear infinite;
-  border-color: #00f transparent #00f transparent;
-}
-@keyframes swirlAnim {
-  0% { transform: rotate(0deg); }
+
+/* Keyframes for swirl spinning */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Example styling for the status text */
 #doorLabel {
   font-size: 20px;
   font-weight: 600;
@@ -150,33 +54,4 @@ body {
 #doorStatusLabel {
   font-size: 18px;
   color: #007aff;
-}
-
-/* LOGS PAGE */
-.logs-page .logs-content {
-  flex: 1;
-  padding: 20px;
-}
-.logs-content h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-#logList {
-  list-style: none;
-  margin-bottom: 20px;
-}
-#logList li {
-  padding: 8px;
-  border-bottom: 1px solid #ccc;
-}
-.pagination-controls {
-  text-align: center;
-}
-
-/* Alerts or Notification Messages (if any) */
-.alert {
-  margin: 10px;
-  color: red;
-  font-weight: bold;
-  text-align: center;
 }
