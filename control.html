@@ -3,41 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
   <title>Garage Door Control</title>
 </head>
 <body>
   <div class="page control-page">
     <!-- TOP NAV BAR -->
     <header class="top-nav">
-      <!-- Left icons: hamburger + wifi + bluetooth -->
+      <!-- Left icons: wifi, bluetooth -->
       <div class="left-icons">
-        <div class="hamburger">☰</div>
         <span id="wifiIcon">📶</span>
         <span id="bluetoothIcon">🔵</span>
       </div>
 
-      <!-- Title -->
+      <!-- Title in the center -->
       <div class="title">Devices</div>
 
-      <!-- Right icons: battery + plus sign -->
+      <!-- Right icon: battery only -->
       <div class="right-icons">
         <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
-        <span class="add-device">+</span>
       </div>
     </header>
 
     <!-- MAIN CONTENT -->
     <main class="door-content">
-      <!-- Circle with swirl animation & door icon inside -->
-      <div class="door-circle" id="doorCircle">
-        <!-- Replace with your own icon if you want -->
-        <img src="https://via.placeholder.com/100/FFFFFF/?text=Door" alt="Door Icon" id="doorIcon"/>
+      <!-- Circle that briefly shows swirl when opening/closing -->
+      <div class="door-circle">
+        <!-- The swirl is hidden by default; shown only during animation -->
         <div class="swirl" id="swirlAnim"></div>
+        <img src="doorClosed.png" alt="Door Icon" id="doorImage" />
       </div>
 
       <h2 id="doorLabel">Garage Door Opener</h2>
-      <h3 id="doorStatusLabel">Closing now...</h3>
+      <h3 id="doorStatusLabel">Door is closed</h3>
     </main>
 
     <!-- BOTTOM NAV BAR -->
