@@ -8,32 +8,30 @@
 </head>
 <body>
   <div class="page logs-page">
-    <!-- TOP NAV BAR -->
+    <!-- Top Nav -->
     <header class="top-nav">
       <div class="left-icons">
-        <div class="hamburger">☰</div>
         <span id="wifiIcon">📶</span>
         <span id="bluetoothIcon">🔵</span>
       </div>
       <div class="title">Devices</div>
       <div class="right-icons">
         <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
-        <span class="add-device">+</span>
       </div>
     </header>
 
-    <!-- MAIN CONTENT: LOGS -->
-    <main class="logs-content">
+    <!-- Main Content -->
+    <main class="main-content">
       <h2>Activity Logs</h2>
-      <ul id="logList"></ul>
-      <div id="pagination" class="pagination-controls"></div>
+      <ul id="logList" class="logs-list"></ul>
+      <div id="pagination"></div>
     </main>
 
-    <!-- BOTTOM NAV BAR -->
+    <!-- Bottom Nav -->
     <footer class="bottom-nav">
-      <button id="homeBtn" class="nav-btn">Home</button>
-      <button id="logsBtn" class="nav-btn selected">Logs</button>
-      <button id="logoutBtn" class="nav-btn">Logout</button>
+      <button id="homeBtn">Home</button>
+      <button id="logsBtn">Logs</button>
+      <button id="logoutBtn">Logout</button>
     </footer>
   </div>
 
