@@ -1,123 +1,182 @@
-/* --- Final Fix for White Box & Proper Icon Positioning --- */
-
-/* Reset & Full-Screen White Background */
-body, html {
+/* Reset default margins/padding */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7f9;
+  color: #333;
+}
+
+/* Page Container */
+.page {
   width: 100%;
-  height: 100vh;
-  background-color: white;
+  max-width: 450px;
+  margin: 0 auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+}
+
+/* TOP NAV BAR */
+.top-nav {
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
   align-items: center;
-  font-family: 'Arial', sans-serif;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+.left-icons, .right-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hamburger {
+  cursor: pointer;
+  font-size: 20px;
+}
+.title {
+  font-weight: 600;
+  font-size: 18px;
+}
+.add-device {
+  font-size: 22px;
+  cursor: pointer;
+}
+#batteryIcon {
+  font-size: 14px;
+}
+
+/* BOTTOM NAV BAR */
+.bottom-nav {
+  height: 56px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
   position: relative;
 }
-
-/* Top Status Bar Icons (Placed at Absolute Top) */
-#top-icons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  position: fixed;
-  top: 0px; /* Forces icons to the top of the phone screen */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  padding: 10px 0;
-  z-index: 10;
+.nav-btn.selected {
+  color: #007aff;
 }
 
-#battery {
-  font-size: 16px;
-  color: #333;
-}
-
-/* Main App Container (Fix White Box) */
-#app {
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  padding: 25px;
-  background: transparent; /* Removed the white box background */
-  border-radius: 20px;
-  box-shadow: none; /* Removed shadow that created the white box effect */
-  position: absolute;
-  top: 12%; /* Adjusted so the app sits better */
-}
-
-/* Dog Icon */
-.dog-image {
-  width: 120px;
-  height: auto;
-  margin-bottom: 15px;
-}
-
-/* Title */
-h1 {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-/* Input Field */
-input[type="text"] {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Buttons */
-.button-group {
+/* LOGIN PAGE */
+.login-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  justify-content: center;
 }
-
-button {
-  width: 100%;
-  padding: 15px;
+.big-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+.login-content h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.login-content input {
+  width: 80%;
   font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
-
-button:hover {
-  transform: scale(1.05);
-}
-
-.green-btn {
-  background: linear-gradient(135deg, #32CD32, #228B22);
-  color: white;
-}
-
-.red-btn {
-  background: linear-gradient(135deg, #FF6347, #B22222);
-  color: white;
-}
-
 .blue-btn {
-  background: linear-gradient(135deg, #007BFF, #0056B3);
-  color: white;
+  width: 80%;
+  padding: 14px;
+  background: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-/* Smooth Animations */
-.fade-in {
-  animation: fadeIn 1s ease-in-out;
+/* CONTROL PAGE */
+.control-page .door-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.door-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+}
+#doorIcon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.swirl {
+  width: 180px;
+  height: 180px;
+  border: 10px solid #00f;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  box-sizing: border-box;
+  animation: swirlAnim 2s linear infinite;
+  border-color: #00f transparent #00f transparent;
+}
+@keyframes swirlAnim {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#doorLabel {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+#doorStatusLabel {
+  font-size: 18px;
+  color: #007aff;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* LOGS PAGE */
+.logs-page .logs-content {
+  flex: 1;
+  padding: 20px;
+}
+.logs-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#logList {
+  list-style: none;
+  margin-bottom: 20px;
+}
+#logList li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.pagination-controls {
+  text-align: center;
+}
+
+/* Alerts or Notification Messages (if any) */
+.alert {
+  margin: 10px;
+  color: red;
+  font-weight: bold;
+  text-align: center;
 }
