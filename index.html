@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="dog.png">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
   <title>Dog Door Login</title>
 </head>
 <body>
-  <div id="app" class="fade-in">
-    <!-- Top Icons -->
-    <div id="top-icons">
-      <span id="wifi">📶</span>
-      <span id="bluetooth">🔵</span>
-      <span id="doorIndicator">🟢</span> <!-- Default to Green -->
-      <div id="battery">🔋 <span id="batteryStatus">100%</span></div>
-    </div>
+  <div class="page login-page">
+    <!-- TOP NAV BAR -->
+    <header class="top-nav">
+      <!-- Left side: hamburger + icons (optional if you want WiFi/Bluetooth on login) -->
+      <div class="left-icons">
+        <div class="hamburger">☰</div>
+        <span id="wifiIcon">📶</span>
+        <span id="bluetoothIcon">🔵</span>
+      </div>
 
-    <!-- Dog Image -->
-    <img src="dog.png" alt="Dog Icon" style="width: 150px; height: auto; margin: 20px auto; display: block;">
+      <!-- Title -->
+      <div class="title">Devices</div>
 
-    <!-- Main Content -->
-    <h1>Dog Door</h1>
-    <input type="text" id="rfid" placeholder="Enter RFID">
-    <button id="check">Login</button>
+      <!-- Right side: battery -->
+      <div class="right-icons">
+        <span id="batteryIcon">🔋 <span id="batteryStatus">100%</span></span>
+        <span class="add-device">+</span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="login-content">
+      <img src="dog.png" alt="Dog Icon" class="big-icon" />
+      <h1>Dog Door</h1>
+
+      <input type="text" id="rfid" placeholder="Enter RFID" />
+
+      <button id="check" class="blue-btn">Login</button>
+    </main>
   </div>
 
   <script src="script.js"></script>
