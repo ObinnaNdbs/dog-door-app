@@ -1,24 +1,152 @@
-/* Container for door content */
-.door-content {
+/* RESET some basics */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+}
+
+/***************************************************************
+  Page Container: Max-width for phone layout, center alignment
+***************************************************************/
+.page {
+  width: 100%;
+  max-width: 450px; /* Good for most iPhones */
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/***************************************************************
+  Top Nav: fixed height, icons left/right, title center
+***************************************************************/
+.top-nav {
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* so we can position left/right icons absolutely */
+}
+
+/* Title in center */
+.top-nav .title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Left/Right icons are placed absolutely */
+.left-icons,
+.right-icons {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+.left-icons {
+  left: 0;
+  gap: 8px; /* space between icons */
+}
+.right-icons {
+  right: 0;
+  gap: 8px;
+}
+
+/***************************************************************
+  Main Content: flexible area
+***************************************************************/
+.main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 60px; /* space above bottom nav */
+  align-items: center; /* center horizontally */
+  justify-content: center; /* center vertically, if there's enough space */
+  padding: 20px;
+  text-align: center;
 }
 
-/* The circle containing the swirl + door image */
+/***************************************************************
+  Bottom Nav: pinned at bottom, row of equally spaced buttons
+***************************************************************/
+.bottom-nav {
+  height: 56px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #007aff;
+}
+
+/***************************************************************
+  Additional UI elements
+***************************************************************/
+
+/* Battery Icon */
+#batteryIcon {
+  font-size: 14px;
+}
+
+/* Basic Buttons (for login, etc.) */
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 12px;
+}
+
+/* Input styling */
+input[type="text"] {
+  width: 70%;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* If you want a big icon or image on the login page */
+.big-icon {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/***************************************************************
+  Door Circle / Images (Control Page)
+***************************************************************/
 .door-circle {
   position: relative;
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
 }
-
-/* The swirl (hidden by default) */
-.swirl {
-  display: none;
+.door-circle .swirl {
+  display: none; /* shown only during open/close */
   position: absolute;
   top: 0; left: 0;
   width: 200px;
@@ -29,8 +157,9 @@
   animation: spin 1s linear infinite;
   z-index: 1;
 }
-
-/* Door image sits above swirl */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 #doorImage {
   position: absolute;
   top: 50%; left: 50%;
@@ -39,19 +168,16 @@
   transform: translate(-50%, -50%);
 }
 
-/* Keyframes for swirl spinning */
-@keyframes spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/***************************************************************
+  Logs List
+***************************************************************/
+.logs-list {
+  list-style: none;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
-
-/* Example styling for the status text */
-#doorLabel {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-#doorStatusLabel {
-  font-size: 18px;
-  color: #007aff;
+.logs-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
