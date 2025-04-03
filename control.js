@@ -2,8 +2,6 @@
   Variables & Initialization
 ************************************************************/
 let doorState = localStorage.getItem("doorState") || "closed"; 
-// doorState can be "closed", "opening", "open", "closing"
-
 let doorOpenTimer;
 let doorWarnTimer;
 
@@ -31,9 +29,6 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 
 /***********************************************************
   Door Interactions
-  - Tapping the door circle toggles open/close.
-  - If closed -> openDoor()
-  - If open -> closeDoor()
 ************************************************************/
 document.querySelector(".door-circle").addEventListener("click", () => {
   if (doorState === "closed") {
@@ -44,7 +39,7 @@ document.querySelector(".door-circle").addEventListener("click", () => {
 });
 
 /***********************************************************
-  Open Door (sets doorState to 'opening', swirl for 2s, then 'open')
+  Open Door (App-triggered + ESP32 fetch)
 ************************************************************/
 function openDoor() {
   if (doorState === "open" || doorState === "opening") return;
@@ -52,8 +47,14 @@ function openDoor() {
   doorState = "opening";
   localStorage.setItem("doorState", doorState);
 
-  updateDoorUI();            // Show swirl
+  updateDoorUI();
   logActivity("Door started opening...");
+
+  // 🛰️ Fetch to ESP32
+  fetch("http://172.20.10.13/open")  // Change this IP to match your ESP32
+    .then(res => res.text())
+    .then(msg => console.log("ESP32:", msg))
+    .catch(err => console.warn("ESP32 /open error:", err));
 
   // After 2 seconds, door becomes fully open
   setTimeout(() => {
@@ -62,7 +63,7 @@ function openDoor() {
     updateDoorUI();
     logActivity("Door opened manually");
 
-    // Start 10s warnings
+    // Start 10s reminder log
     doorWarnTimer = setInterval(() => {
       if (doorState === "open") {
         logActivity("Reminder: Door is still open");
@@ -80,7 +81,7 @@ function openDoor() {
 }
 
 /***********************************************************
-  Close Door (sets doorState to 'closing', swirl for 2s, then 'closed')
+  Close Door (App-triggered + ESP32 fetch)
 ************************************************************/
 function closeDoor(isAuto) {
   if (doorState === "closed" || doorState === "closing") return;
@@ -90,6 +91,12 @@ function closeDoor(isAuto) {
 
   updateDoorUI();
   logActivity(isAuto ? "Door started auto-closing..." : "Door started closing...");
+
+  // 🛰️ Fetch to ESP32
+  fetch("http://172.20.10.13/close")  // Change this IP to match your ESP32
+    .then(res => res.text())
+    .then(msg => console.log("ESP32:", msg))
+    .catch(err => console.warn("ESP32 /close error:", err));
 
   clearInterval(doorWarnTimer);
   clearTimeout(doorOpenTimer);
@@ -104,14 +111,13 @@ function closeDoor(isAuto) {
 }
 
 /***********************************************************
-  updateDoorUI() - Controls swirl, door image, text, etc.
+  updateDoorUI() - Swirl + image + label
 ************************************************************/
 function updateDoorUI() {
   const doorImage = document.getElementById("doorImage");
   const swirl = document.getElementById("swirlAnim");
   const statusLabel = document.getElementById("doorStatusLabel");
 
-  // Show swirl only if "opening" or "closing"
   if (doorState === "opening") {
     swirl.style.display = "block";
     doorImage.src = "doorClosed.png";
