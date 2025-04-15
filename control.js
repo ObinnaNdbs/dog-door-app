@@ -5,6 +5,18 @@ let doorState = localStorage.getItem("doorState") || "closed";
 let doorOpenTimer;
 let doorWarnTimer;
 
+// 🔄 If app loads and we're stuck in "opening" or "closing" state, auto-reset to "closed"
+if (doorState === "opening" || doorState === "closing") {
+  setTimeout(() => {
+    if (doorState === "opening" || doorState === "closing") {
+      doorState = "closed";
+      localStorage.setItem("doorState", doorState);
+      updateDoorUI();
+      logActivity("UI auto-reset to closed (fetch likely blocked)");
+    }
+  }, 5000); // after 5 seconds, force it to reset
+}
+
 // Update battery from localStorage
 let batteryLevel = localStorage.getItem("batteryLevel") 
   ? parseInt(localStorage.getItem("batteryLevel")) 
